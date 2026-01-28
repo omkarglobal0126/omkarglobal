@@ -5,6 +5,7 @@ const ProductSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      trim: true,
     },
 
     category: {
@@ -20,23 +21,30 @@ const ProductSchema = new mongoose.Schema(
     subCategory: {
       type: String,
       required: true,
+      trim: true,
     },
 
     images: {
-      type: [String],
+      type: [String], // Cloudinary CDN URLs
       required: true,
+      validate: {
+        validator: (v) => Array.isArray(v) && v.length > 0,
+        message: "At least one image is required",
+      },
     },
 
-    description: String,
+    description: {
+      type: String,
+      trim: true,
+    },
   },
   {
     timestamps: true,
-    autoIndex: false, // ✅ prevents accidental unique index recreation
+    autoIndex: false,
   }
 );
 
-/* optional performance index (NOT unique) */
 ProductSchema.index({ category: 1, subCategory: 1 });
 
-export default mongoose.models.Product1 ||
-  mongoose.model("Product1", ProductSchema);
+export default mongoose.models.Product ||
+  mongoose.model("Product", ProductSchema);
