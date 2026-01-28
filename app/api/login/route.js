@@ -19,7 +19,7 @@ export async function POST(request) {
     }
 
     // Simple password match (NO HASH)
-    if (password !== "Omkarglobal@0126") {
+    if (password !== user.password) {
       return NextResponse.json(
         { message: "Invalid credentials" },
         { status: 401 }
