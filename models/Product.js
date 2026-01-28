@@ -46,5 +46,5 @@ const ProductSchema = new mongoose.Schema(
 
 ProductSchema.index({ category: 1, subCategory: 1 });
 
-export default mongoose.models.Product1 ||
-  mongoose.model("Product1", ProductSchema);
+export default mongoose.models.Product ||
+  mongoose.model("Product", ProductSchema);
