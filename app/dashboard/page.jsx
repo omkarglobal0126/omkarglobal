@@ -6,12 +6,8 @@ import {
   PlusCircle,
   ArrowUpDown,
   Loader2,
-  Package,
   Pencil,
   Trash2,
-  X,
-  Tag,
-  Layers,
   Image as ImageIcon,
 } from "lucide-react";
 
@@ -35,14 +31,6 @@ const SUB_CATEGORIES = {
   ],
 };
 
-const CATEGORY_COLORS = {
-  "Food & Agriculture": "bg-emerald-100 text-emerald-700 border-emerald-200",
-  "Handicrafts & Industrial":
-    "bg-amber-100 text-amber-700 border-amber-200",
-  "Lifestyle & Fashion":
-    "bg-purple-100 text-purple-700 border-purple-200",
-};
-
 export default function ProductDashboard() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -50,19 +38,19 @@ export default function ProductDashboard() {
   const [uploading, setUploading] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
+  // ✅ images is ARRAY
   const [form, setForm] = useState({
     name: "",
     category: "",
     subCategory: "",
-    images: "",
+    images: [],
     description: "",
   });
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterCategory, setFilterCategory] = useState("All");
   const [sortOrder, setSortOrder] = useState("asc");
 
-  /* ---------------- FETCH PRODUCTS ---------------- */
+  /* ================= FETCH ================= */
   const fetchProducts = async () => {
     setLoading(true);
     const res = await fetch("/api/products");
@@ -75,7 +63,7 @@ export default function ProductDashboard() {
     fetchProducts();
   }, []);
 
-  /* ---------------- IMAGE UPLOAD ---------------- */
+  /* ================= CLOUDINARY UPLOAD ================= */
   const uploadImage = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -86,21 +74,19 @@ export default function ProductDashboard() {
     });
 
     const data = await res.json();
-    return data.url; // Cloudinary CDN URL
+    return data.url; // CDN URL
   };
 
-  /* ---------------- SUBMIT ---------------- */
+  /* ================= SUBMIT ================= */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
 
-    const payload = {
-      ...form,
-      images: form.images
-        .split(",")
-        .map((i) => i.trim())
-        .filter(Boolean),
-    };
+    if (form.images.length === 0) {
+      alert("Please upload at least one image");
+      return;
+    }
+
+    setSubmitting(true);
 
     const url = editingId
       ? `/api/products/${editingId}`
@@ -111,11 +97,14 @@ export default function ProductDashboard() {
     const res = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(form), // ✅ images already array
     });
 
     if (!res.ok) {
-      alert("Something went wrong");
+      const err = await res.json();
+      alert(err.error || "Something went wrong");
+      setSubmitting(false);
+      return;
     }
 
     resetForm();
@@ -128,25 +117,22 @@ export default function ProductDashboard() {
       name: "",
       category: "",
       subCategory: "",
-      images: "",
+      images: [],
       description: "",
     });
     setEditingId(null);
   };
 
-  /* ---------------- DELETE ---------------- */
+  /* ================= DELETE ================= */
   const handleDelete = async (id) => {
     if (!confirm("Delete this product?")) return;
     await fetch(`/api/products/${id}`, { method: "DELETE" });
     fetchProducts();
   };
 
-  /* ---------------- FILTER ---------------- */
+  /* ================= FILTER ================= */
   const filteredProducts = useMemo(() => {
     return products
-      .filter(
-        (p) => filterCategory === "All" || p.category === filterCategory
-      )
       .filter((p) =>
         p.name.toLowerCase().includes(searchTerm.toLowerCase())
       )
@@ -155,9 +141,9 @@ export default function ProductDashboard() {
           ? a.name.localeCompare(b.name)
           : b.name.localeCompare(a.name)
       );
-  }, [products, searchTerm, filterCategory, sortOrder]);
+  }, [products, searchTerm, sortOrder]);
 
-  /* ---------------- UI ---------------- */
+  /* ================= UI ================= */
   return (
     <div className="min-h-screen bg-slate-50 p-6 pt-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8">
@@ -176,7 +162,7 @@ export default function ProductDashboard() {
           </div>
 
           <input
-            placeholder="Search..."
+            placeholder="Search products..."
             className="w-full border p-3 rounded-xl"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -215,23 +201,20 @@ export default function ProductDashboard() {
                           </div>
                         </div>
                       </td>
-                      <td className="p-4">
-                        <span
-                          className={`px-2 py-1 text-xs rounded-md border ${CATEGORY_COLORS[p.category]}`}
-                        >
-                          {p.category}
-                        </span>
-                      </td>
+                      <td className="p-4">{p.category}</td>
                       <td className="p-4 text-right">
                         <button
                           onClick={() => {
                             setEditingId(p._id);
                             setForm({
-                              ...p,
-                              images: p.images.join(", "),
+                              name: p.name,
+                              category: p.category,
+                              subCategory: p.subCategory,
+                              images: p.images,
+                              description: p.description || "",
                             });
                           }}
-                          className="mr-2 text-blue-600"
+                          className="mr-3 text-blue-600"
                         >
                           <Pencil size={16} />
                         </button>
@@ -308,13 +291,13 @@ export default function ProductDashboard() {
               onChange={async (e) => {
                 setUploading(true);
                 const urls = [];
-                for (let file of Array.from(e.target.files)) {
+                for (const file of Array.from(e.target.files)) {
                   const url = await uploadImage(file);
                   urls.push(url);
                 }
                 setForm((p) => ({
                   ...p,
-                  images: urls.join(","),
+                  images: [...p.images, ...urls],
                 }));
                 setUploading(false);
               }}
@@ -326,18 +309,15 @@ export default function ProductDashboard() {
               </p>
             )}
 
-            {/* PREVIEW */}
+            {/* IMAGE PREVIEW */}
             <div className="flex gap-2 flex-wrap">
-              {form.images
-                .split(",")
-                .filter(Boolean)
-                .map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    className="w-16 h-16 object-cover rounded-lg border"
-                  />
-                ))}
+              {form.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  className="w-16 h-16 object-cover rounded-lg border"
+                />
+              ))}
             </div>
 
             <textarea
