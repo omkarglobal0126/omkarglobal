@@ -1,50 +1,47 @@
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
-import { serialize } from "cookie";
-import mongoose from "mongoose";
-import User from "@/models/User"; // Apka model path
-import bcrypt from "bcryptjs";
+import User from "@/models/User";
 import { connectDB } from "@/lib/db";
 
 export async function POST(request) {
-  const { username, password } = await request.json();
+  try {
+    const { username, password } = await request.json();
 
-  await connectDB();
+    await connectDB();
 
-  // 1. User find karein
-  const user = await User.findOne({ username });
+    // User find
+    const user = await User.findOne({ username });
 
-  if (!user) {
-    return NextResponse.json({ message: "User not found" }, { status: 401 });
-  }
+    if (!user) {
+      return NextResponse.json(
+        { message: "User not found" },
+        { status: 401 }
+      );
+    }
 
-  // 2. Password compare karein (Hash vs Plaintext)
-  const isMatch = await bcrypt.compare(password, user.password);
+    // Simple password match (NO HASH)
+    if (password !== user.password) {
+      return NextResponse.json(
+        { message: "Invalid credentials" },
+        { status: 401 }
+      );
+    }
 
-  if (!isMatch) {
+    // Success
     return NextResponse.json(
-      { message: "Invalid credentials" },
-      { status: 401 },
+      {
+        message: "Login successful",
+        user: {
+          id: user._id,
+          username: user.username,
+        },
+      },
+      { status: 200 }
+    );
+
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Something went wrong", error: error.message },
+      { status: 500 }
     );
   }
-
-  // 3. Token Generate
-  const token = jwt.sign(
-    { id: user._id, username: user.username },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" },
-  );
-
-  // 4. Cookie Set
-  const cookie = serialize("auth_token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // Live site par true hoga
-    sameSite: "strict",
-    maxAge: 86400, // 1 day
-    path: "/",
-  });
-
-  const response = NextResponse.json({ message: "Login successful" });
-  response.headers.set("Set-Cookie", cookie);
-  return response;
 }
