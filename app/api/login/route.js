@@ -8,7 +8,6 @@ export async function POST(request) {
 
     await connectDB();
 
-    // User find
     const user = await User.findOne({ username });
 
     if (!user) {
@@ -18,29 +17,21 @@ export async function POST(request) {
       );
     }
 
-    // Simple password match (NO HASH)
-    if (password !== user.password) {
+    if (user.password !== password) {
       return NextResponse.json(
         { message: "Invalid credentials" },
         { status: 401 }
       );
     }
 
-    // Success
     return NextResponse.json(
-      {
-        message: "Login successful",
-        user: {
-          id: user._id,
-          username: user.username,
-        },
-      },
+      { message: "Login successful" },
       { status: 200 }
     );
 
-  } catch (error) {
+  } catch (err) {
     return NextResponse.json(
-      { message: "Something went wrong", error: error.message },
+      { message: "Server error", error: err.message },
       { status: 500 }
     );
   }
