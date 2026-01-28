@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true }, // Hashed password store hoga
 });
 
-export default mongoose.models.User ||
-  mongoose.model("User", userSchema);
+export default mongoose.models.authentication || mongoose.model("authentication", userSchema);
