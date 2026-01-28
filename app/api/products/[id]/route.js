@@ -3,9 +3,9 @@ import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 
 /* ================= UPDATE ================= */
-export async function PUT(req, { params }) {
+export async function PUT(req, context) {
   try {
-    const { id } = params; // ✅ CORRECT
+    const { id } = await context.params; // ✅ FIX
 
     await connectDB();
     const body = await req.json();
@@ -36,9 +36,9 @@ export async function PUT(req, { params }) {
 }
 
 /* ================= DELETE ================= */
-export async function DELETE(req, { params }) {
+export async function DELETE(req, context) {
   try {
-    const { id } = params; // ✅ CORRECT
+    const { id } = await context.params; // ✅ FIX
 
     await connectDB();
     const deleted = await Product.findByIdAndDelete(id);
