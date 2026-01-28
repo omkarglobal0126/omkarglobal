@@ -3,9 +3,16 @@ import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 
 export async function GET() {
-  await connectDB();
-  const products = await Product.find().sort({ createdAt: -1 });
-  return NextResponse.json(products);
+  try {
+    await connectDB();
+    const products = await Product.find().sort({ createdAt: -1 });
+    return NextResponse.json(products);
+  } catch (err) {
+    return NextResponse.json(
+      { error: err.message },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req) {
@@ -13,26 +20,24 @@ export async function POST(req) {
     await connectDB();
     const body = await req.json();
 
-    // ✅ Expect images as ARRAY
-    if (!Array.isArray(body.images) || body.images.length === 0) {
+    if (
+      !body.name ||
+      !body.category ||
+      !body.subCategory ||
+      !Array.isArray(body.images) ||
+      body.images.length === 0
+    ) {
       return NextResponse.json(
-        { error: "At least one image is required" },
+        { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
-    const product = await Product.create({
-      name: body.name,
-      category: body.category,
-      subCategory: body.subCategory,
-      description: body.description,
-      images: body.images, // ✅ direct array
-    });
-
+    const product = await Product.create(body);
     return NextResponse.json(product, { status: 201 });
-  } catch (error) {
+  } catch (err) {
     return NextResponse.json(
-      { error: error.message },
+      { error: err.message },
       { status: 400 }
     );
   }

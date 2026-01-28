@@ -43,7 +43,7 @@ export default function Footer() {
         {/* BRAND */}
         <div className="sm:col-span-2 lg:col-span-1">
           <h2 className="text-white text-2xl font-bold">
-            Transport<span className="text-orange-500">Logistic</span>
+            Omkar {" "}<span className="text-orange-500">Global</span>
           </h2>
 
           <p className="mt-4 text-sm leading-relaxed">
