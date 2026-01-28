@@ -40,7 +40,7 @@ export default function LoginPage() {
         {/* Card Container */}
         <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-extrabold text-slate-900">Hello Chinmay</h1>
+            <h1 className="text-3xl font-extrabold text-slate-900">Hello Admin</h1>
             <p className="text-slate-500 mt-2">Please enter your admin credentials</p>
           </div>
 
