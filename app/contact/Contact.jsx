@@ -1,4 +1,7 @@
+"use client";
+
 import { Phone, Mail, MapPin, CalendarDays } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   const infoCards = [
@@ -24,17 +27,43 @@ export default function Contact() {
     },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="bg-gray-50 py-24">
-      <div className="container mx-auto px-4">
-
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto px-4"
+      >
         {/* TOP INFO CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
-          {infoCards.map((item, index) => {
-            const Icon = item.icon;
+        <motion.div
+          variants={container}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24"
+        >
+          {infoCards.map((itemData, index) => {
+            const Icon = itemData.icon;
             return (
-              <div
+              <motion.div
                 key={index}
+                variants={item}
                 className="bg-white rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition"
               >
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-orange-100 flex items-center justify-center">
@@ -42,47 +71,58 @@ export default function Contact() {
                 </div>
 
                 <h4 className="font-bold text-gray-900 mb-2">
-                  {item.title}
+                  {itemData.title}
                 </h4>
 
-                {item.desc.map((line, i) => (
+                {itemData.desc.map((line, i) => (
                   <p key={i} className="text-sm text-gray-600">
                     {line}
                   </p>
                 ))}
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CONTACT FORM SECTION */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
           {/* LEFT CONTENT */}
-          <div>
-            <span className="text-sm font-semibold text-orange-500 flex items-center gap-2 mb-4">
+          <motion.div variants={container}>
+            <motion.span
+              variants={item}
+              className="text-sm font-semibold text-orange-500 flex items-center gap-2 mb-4"
+            >
               ✦ 01. LET’S CONNECT
-            </span>
+            </motion.span>
 
-            <h2 className="text-4xl font-extrabold text-gray-900 leading-tight mb-6">
+            <motion.h2
+              variants={item}
+              className="text-4xl font-extrabold text-gray-900 leading-tight mb-6"
+            >
               Contact Us & Get <br /> In Here Touch !
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-md">
+            <motion.p variants={item} className="text-gray-600 max-w-md">
               There are many variations of passages of Lorem Ipsum available,
               but the majority have suffered alteration some form, by injected
               humour.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* RIGHT FORM */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-6">
+          <motion.div variants={container}>
+            <motion.h3
+              variants={item}
+              className="text-xl font-bold text-gray-900 mb-6"
+            >
               Send Your Message
-            </h3>
+            </motion.h3>
 
-            <form className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <motion.form variants={container} className="space-y-5">
+              <motion.div
+                variants={item}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              >
                 <input
                   type="text"
                   placeholder="Your Name"
@@ -93,9 +133,12 @@ export default function Contact() {
                   placeholder="Your Email"
                   className="w-full rounded-full border border-gray-200 px-5 py-3 text-sm focus:outline-none focus:border-orange-400"
                 />
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <motion.div
+                variants={item}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              >
                 <input
                   type="text"
                   placeholder="Phone*"
@@ -106,27 +149,26 @@ export default function Contact() {
                   placeholder="Services"
                   className="w-full rounded-full border border-gray-200 px-5 py-3 text-sm focus:outline-none focus:border-orange-400"
                 />
-              </div>
+              </motion.div>
 
-              <textarea
+              <motion.textarea
+                variants={item}
                 rows="4"
                 placeholder="Message Here..."
                 className="w-full rounded-2xl border border-gray-200 px-5 py-4 text-sm focus:outline-none focus:border-orange-400"
               />
 
-           
-
-              <button
+              <motion.button
+                variants={item}
                 type="submit"
                 className="inline-flex items-center gap-2 bg-orange-500 text-white px-7 py-3 rounded-lg font-semibold hover:scale-105 transition"
               >
                 Submit
-              </button>
-            </form>
-          </div>
-
+              </motion.button>
+            </motion.form>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

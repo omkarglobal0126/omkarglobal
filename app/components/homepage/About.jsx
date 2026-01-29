@@ -1,13 +1,38 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import about from "@/public/homepage/about.jpg";
 
 export default function About() {
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="py-20 flex justify-center items-center bg-white">
-      <div className="max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-2  items-center">
-        {/* Left Images */}
-        <div className="relative max-lg:mb-8">
-          {/* Main Image */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-2 items-center"
+      >
+        {/* Left Image */}
+        <motion.div variants={item} className="relative max-lg:mb-8">
           <div className="rounded-2xl overflow-hidden">
             <Image
               src={about}
@@ -17,68 +42,64 @@ export default function About() {
               className="object-cover"
             />
           </div>
-
-          {/* Experience Badge */}
-          {/* <div className="absolute bottom-6 left-6 bg-[#0b0f17] text-white px-6 py-4 rounded-xl shadow-lg">
-            <p className="text-3xl font-bold text-orange-500">34+</p>
-            <p className="text-sm">Years of Experience</p>
-          </div> */}
-        </div>
+        </motion.div>
 
         {/* Right Content */}
         <div>
-          {/* <span className="inline-block bg-orange-100 text-orange-600 text-sm font-semibold px-4 py-1 rounded-full mb-4">
-            About Company
-          </span> */}
+          <motion.h2
+            variants={item}
+            className="text-3xl md:text-4xl font-bold leading-tight"
+          >
+           Delivering Reliable Global  <br /> Trade Solutions
+          </motion.h2>
 
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-            Delivering Quality Products <br /> Across Industries
-          </h2>
+          <motion.p variants={item} className="mt-6 text-gray-600">
+            We are a professional Import–Export company specializing in
+            sourcing, supplying, and distributing products across international
+            markets.
+          </motion.p>
 
-          <p className="mt-6 text-gray-600">
-            We are a multi-product business committed to delivering quality,
-            reliability, and value across a wide range of industries. Based in
-            Bhanpuri, Raipur, Chhattisgarh, we specialize in sourcing and
-            supplying premium products that meet the needs of domestic and
-            commercial markets.
-          </p>
-          <p className="mt-2 text-gray-600">
-            For inquiries, partnerships, or product details, feel free to
-            contact us. Our team is available 24 hours a day, seven days a week,
-            to assist you and ensure a smooth and reliable business experience.
-          </p>
-
+          <motion.p variants={item} className="mt-2 mb-4 text-gray-600">
+            With a strong understanding of global trade regulations and
+            logistics, we ensure smooth and hassle-free transactions for our
+            clients.
+          </motion.p>
+        
           {/* Points */}
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <motion.div
+            variants={container}
+            className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
+          >
             {[
-              "Worldwide Transport",
-              "Safety & Reliability",
-              "Real-time Tracking",
-              "24/7 Customer Support",
-            ].map((item) => (
-              <div
-                key={item}
+              "Integrity & Transparency",
+              "Customer-First Approach",
+              "Quality Commitment",
+              "Long-Term Partnerships",
+            ].map((itemText) => (
+              <motion.div
+                key={itemText}
+                variants={item}
                 className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg"
               >
                 <span className="w-8 h-8 flex items-center justify-center bg-orange-500 text-white rounded-full">
                   ✓
                 </span>
-                <span className="font-medium">{item}</span>
-              </div>
+                <span className="font-medium">{itemText}</span>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* CTA */}
-          <div className="mt-8">
+          <motion.div variants={item} className="mt-8">
             <a
               href="/about"
               className="bg-orange-500 hover:bg-orange-600 transition text-white px-6 py-3 rounded-lg font-semibold"
             >
               About Us
             </a>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

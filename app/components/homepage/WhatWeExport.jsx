@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
+
 import service1 from "@/public/services/service1.jpg";
 import service2 from "@/public/services/service2.jpg";
 import service3 from "@/public/services/service3.jpg";
@@ -9,94 +13,126 @@ import service6 from "@/public/services/service6.jpg";
 import service7 from "@/public/services/service7.jpg";
 import service8 from "@/public/services/service8.jpg";
 import service9 from "@/public/services/service9.jpg";
+
 import { PiGrainsDuotone } from "react-icons/pi";
-import { GiFruitBowl } from "react-icons/gi";
+import { GiFruitBowl, GiClothes, GiJewelCrown } from "react-icons/gi";
 import { LuVegan } from "react-icons/lu";
 import { SiSnapcraft } from "react-icons/si";
 import { RiCopperCoinLine } from "react-icons/ri";
 import { FaKitchenSet } from "react-icons/fa6";
-import { GiClothes } from "react-icons/gi";
-import { GiJewelCrown } from "react-icons/gi";
 import { MdFaceRetouchingNatural } from "react-icons/md";
 
 const exportsData = [
   {
     title: "Grains & Cereals",
-    desc: "We are offering fresh and hygienic fruits and vegetables which are rich in vitamins, minerals & plant chemicals.",
+    desc: "We supply high-quality grains and cereals sourced from trusted farms, ensuring purity, nutritional value, and compliance with international food standards.",
     img: service1,
     link: "/products/Grains & Cereals",
     icon: <PiGrainsDuotone />,
   },
   {
     title: "Fruits",
-    desc: "A spice is a seed, fruit, root, bark or other plant substance primarily used for flavoring food.",
+    desc: "Our fresh fruits are carefully selected, hygienically packed, and exported to retain natural taste, freshness, and nutritional richness.",
     img: service2,
     link: "/products/Fruits",
     icon: <GiFruitBowl />,
   },
   {
     title: "Vegetables",
-    desc: "We are here to provide a variety of grocery products as per market demand.",
+    desc: "We export farm-fresh vegetables that meet global quality requirements, ensuring freshness, safety, and timely delivery to international markets.",
     img: service3,
     link: "/products/Vegetables",
     icon: <LuVegan />,
   },
   {
     title: "Handicrafts & Decorative",
-    desc: "Indian namkeen have earned the flavor of global consumers due to their unique spicy taste.",
+    desc: "Our handcrafted and decorative items reflect rich Indian craftsmanship, designed with precision and creativity for global buyers.",
     img: service4,
     link: "/products/Handicrafts & Decorative",
     icon: <SiSnapcraft />,
   },
   {
     title: "Copper Products",
-    desc: "Handicraft items are uniquely expressed artistic products made with care.",
+    desc: "We offer premium copper products known for their durability, traditional value, and health benefits, crafted by skilled artisans.",
     img: service5,
     link: "/products/Copper Products",
     icon: <RiCopperCoinLine />,
   },
   {
     title: "Kitchenware & Cutlery",
-    desc: "Copper products are well known for their durability and health benefits.",
+    desc: "Our kitchenware and cutlery products combine functionality with quality materials, designed to meet international usage and safety standards.",
     img: service6,
     link: "/products/Kitchenware & Cutlery",
     icon: <FaKitchenSet />,
   },
   {
     title: "Textiles & Apparel",
-    desc: "Artificial jewellery is popular for its beauty, affordability and trendy design.",
+    desc: "We export quality textiles and apparel featuring superior fabrics, modern designs, and reliable stitching suitable for global markets.",
     img: service7,
     link: "/products/Textiles & Apparel",
     icon: <GiClothes />,
   },
   {
     title: "Imitation Jewellery",
-    desc: "We offer a wide range of wooden and modern furniture with fine finishing.",
+    desc: "Our imitation jewellery offers elegant designs, fine finishing, and affordability, making it popular across international fashion markets.",
     img: service8,
     link: "/products/Imitation Jewellery",
     icon: <GiJewelCrown />,
   },
   {
     title: "Beauty Products",
-    desc: "Leather products are crafted with premium quality raw leather.",
+    desc: "We supply carefully formulated beauty products that meet quality, safety, and packaging standards required for international trade.",
     img: service9,
     link: "/products/Beauty Products",
     icon: <MdFaceRetouchingNatural />,
   },
 ];
 
+
 export default function WhatWeExport() {
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const card = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
+      <motion.div
+        className="container mx-auto px-6"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         {/* Heading */}
-        <h2 className="text-3xl font-bold text-center mb-12">What We Export</h2>
+        <motion.h2
+          variants={card}
+          className="text-3xl font-bold text-center mb-12"
+        >
+          What We Export
+        </motion.h2>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={container}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {exportsData.map((item, i) => (
-            <div
+            <motion.div
               key={i}
+              variants={card}
               className="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden"
             >
               {/* Image */}
@@ -111,10 +147,11 @@ export default function WhatWeExport() {
 
               {/* Content */}
               <div className="flex">
-                <div className="px-4 h-18 text-3xl rounded-b-full bg-orange-500 border border-orange-500 flex items-center justify-center text-white cursor-pointer hover:bg-orange-500 hover:text-white transition">
+                <div className="px-4 h-18 text-3xl rounded-b-full bg-orange-500 border border-orange-500 flex items-center justify-center text-white">
                   {item.icon}
                 </div>
-                <div className="p-5 ">
+
+                <div className="p-5">
                   <h3 className="text-lg font-semibold text-orange-600">
                     {item.title}
                   </h3>
@@ -122,21 +159,20 @@ export default function WhatWeExport() {
                     {item.desc}
                   </p>
 
-                  {/* Action icons */}
-                  <div className="flex gap-3 mt-5 ">
+                  <div className="flex gap-3 mt-5">
                     <a
                       href={item.link}
-                      className="flex justify-center items-center gap-2"
+                      className="flex items-center gap-2 font-medium hover:text-orange-600 transition"
                     >
-                      Learn More <FaArrowRight />
+                      View Details <FaArrowRight />
                     </a>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

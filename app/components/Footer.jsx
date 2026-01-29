@@ -10,7 +10,6 @@ import { FaClock } from "react-icons/fa6";
 import { IoCall } from "react-icons/io5";
 import { HiLocationMarker } from "react-icons/hi";
 
-
 const PRODUCTS = [
   {
     title: "Food & Agriculture",
@@ -39,16 +38,16 @@ export default function Footer() {
     <footer className="bg-[#0b0f17] text-gray-300">
       {/* MAIN FOOTER */}
       <div className="max-w-7xl mx-auto px-6 py-14 grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
-        
         {/* BRAND */}
         <div className="sm:col-span-2 lg:col-span-1">
           <h2 className="text-white text-2xl font-bold">
-            Omkar {" "}<span className="text-orange-500">Global</span>
+            Omkar <span className="text-orange-500">Global</span>
           </h2>
 
           <p className="mt-4 text-sm leading-relaxed">
-            We provide reliable and efficient logistics solutions across the
-            globe with modern infrastructure and professional service.
+            We offer a diverse portfolio of high-quality products sourced with
+            strict quality standards to meet domestic and international market
+            demands.
           </p>
 
           <div className="flex gap-3 mt-6">
@@ -85,7 +84,7 @@ export default function Footer() {
                     {item}
                   </Link>
                 </li>
-              )
+              ),
             )}
           </ul>
         </div>
@@ -120,10 +119,18 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4">Office Info</h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex justify-start items-center gap-1"><HiLocationMarker/> Bhanpuri, Raipur, Chhattisgarh</li>
-            <li className="flex justify-start items-center gap-1"><IoCall/> +91 9109803735</li>
-            <li className="flex justify-start items-center gap-1"><IoMdMail/> dewanganakashdeep97@gmail.com</li>
-            <li className="flex justify-start items-center gap-1"><FaClock/> Mon – Sun: 24 Hours</li>
+            <li className="flex justify-start items-center gap-1">
+              <HiLocationMarker /> Bhanpuri, Raipur, Chhattisgarh
+            </li>
+            <li className="flex justify-start items-center gap-1">
+              <IoCall /> +91 9109803735
+            </li>
+            <li className="flex justify-start items-center gap-1">
+              <IoMdMail /> dewanganakashdeep97@gmail.com
+            </li>
+            <li className="flex justify-start items-center gap-1">
+              <FaClock /> Mon – Sun: 24 Hours
+            </li>
           </ul>
         </div>
       </div>
@@ -132,7 +139,8 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row gap-3 items-center justify-between text-sm text-center sm:text-left">
           <p>
-            © {new Date().getFullYear()} Transport Logistic. All Rights Reserved.
+            © {new Date().getFullYear()} Transport Logistic. All Rights
+            Reserved.
           </p>
 
           <div className="flex gap-4">

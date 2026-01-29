@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Factory, Globe, TrendingUp, Handshake } from "lucide-react";
 
 export default function WorkingProcess() {
@@ -28,26 +31,56 @@ export default function WorkingProcess() {
     },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
+        <motion.div
+          variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
             Description Textiles Process
             <br className="hidden sm:block" />
             For Exceptional Results
           </h2>
-        </div>
+        </motion.div>
 
         {/* STEPS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14"
+        >
           {steps.map((step) => {
             const Icon = step.icon;
             return (
-              <div
+              <motion.div
                 key={step.id}
+                variants={item}
                 className="text-center flex flex-col items-center"
               >
                 {/* ICON */}
@@ -55,7 +88,7 @@ export default function WorkingProcess() {
                   <Icon className="w-7 h-7 sm:w-9 sm:h-9 text-black" />
                 </div>
 
-                {/* DIVIDER (desktop only) */}
+                {/* DIVIDER */}
                 <div className="hidden sm:block w-full h-px bg-gray-200 mb-6" />
 
                 {/* CONTENT */}
@@ -66,10 +99,10 @@ export default function WorkingProcess() {
                 <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
                   {step.desc}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

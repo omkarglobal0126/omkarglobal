@@ -2,50 +2,77 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import faq from "@/public/homepage/faq.jpg"
+import { motion } from "framer-motion";
+import faq from "@/public/homepage/faq.jpg";
 
 const faqs = [
   {
-    q: "What services are covered in logistics?",
-    a: "Logistics services include transportation, warehousing, inventory management, packaging, and distribution of goods.",
+    q: "What products do you deal in?",
+    a: "We deal in a wide range of products including agricultural goods, spices, food products, textiles, industrial materials, and general trading items. Custom product sourcing is also available based on client requirements.",
   },
   {
-    q: "How do you ensure safety during shipment?",
-    a: "We follow strict safety protocols, real-time tracking, and professional handling to ensure secure delivery.",
+    q: "Which countries do you export to and import from?",
+    a: "We work with multiple international markets across Asia, the Middle East, Europe, and Africa. Our global network allows us to expand trade routes based on client needs.",
   },
   {
-    q: "Do you provide international shipping?",
-    a: "Yes, we offer international shipping with customs clearance and global tracking support.",
+    q: "How do you ensure product quality?",
+    a: "All products undergo strict quality checks before shipment. We follow international quality standards, proper packaging methods, and compliance procedures to ensure safe and reliable delivery.",
   },
   {
-    q: "Can I track my shipment in real-time?",
-    a: "Absolutely. Our advanced tracking system allows you to monitor shipments anytime.",
+    q: "Do you handle documentation and customs clearance?",
+    a: "Yes, we provide complete support for import-export documentation, customs clearance, and regulatory compliance to ensure a smooth and hassle-free trading process.",
   },
   {
-    q: "What makes your company reliable?",
-    a: "Our experience, trained staff, modern infrastructure, and customer-first approach make us reliable.",
+    q: "How can I place an order or request a quote?",
+    a: "You can contact us through our website, email, or phone. Share your product details, quantity, and destination, and our team will get back to you with a customized quotation.",
   },
 ];
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="py-20 bg-white">
-      <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+      >
         {/* LEFT FAQ */}
         <div>
-          <span className="text-orange-500 font-semibold uppercase text-sm">
-            General FAQ
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-8">
-            Frequently Asked <span className="text-orange-500">Questions</span>
-          </h2>
+         
 
-          <div className="space-y-4">
-            {faqs.map((item, index) => (
-              <div
+          <motion.h2
+            variants={item}
+            className="text-3xl md:text-4xl font-bold mt-2 mb-8"
+          >
+            Frequently Asked <span className="text-orange-500">Questions</span>
+          </motion.h2>
+
+          <motion.div variants={container} className="space-y-4">
+            {faqs.map((faqItem, index) => (
+              <motion.div
                 key={index}
+                variants={item}
                 className="border border-gray-200 rounded-lg overflow-hidden"
               >
                 <button
@@ -54,7 +81,7 @@ export default function FAQ() {
                   }
                   className="w-full flex justify-between items-center p-4 text-left font-medium"
                 >
-                  <span>{item.q}</span>
+                  <span>{faqItem.q}</span>
                   <span className="text-orange-500 text-xl">
                     {openIndex === index ? "−" : "+"}
                   </span>
@@ -67,15 +94,15 @@ export default function FAQ() {
                       : "max-h-0 overflow-hidden"
                   }`}
                 >
-                  {item.a}
+                  {faqItem.a}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="relative">
+        <motion.div variants={item} className="relative">
           <Image
             src={faq}
             alt="Logistics Truck"
@@ -83,8 +110,8 @@ export default function FAQ() {
             height={400}
             className="object-contain"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

@@ -1,63 +1,83 @@
+"use client";
+
 import Image from "next/image";
-import whyChooseUs from "@/public/homepage/whyChooseUs.jpg"
+import { motion } from "framer-motion";
+import whyChooseUs from "@/public/homepage/whyChooseUs.jpg";
 
 export default function WhyChoose() {
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="relative bg-white py-20">
-      <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+      >
         {/* LEFT CONTENT */}
         <div>
-          <h2 className="text-4xl font-bold leading-tight">
+          <motion.h2
+            variants={item}
+            className="text-4xl font-bold leading-tight"
+          >
             Why Choose <br />
             TransLogistics <span className="text-orange-500">PRO</span>
-          </h2>
+          </motion.h2>
 
-          <p className="mt-6 text-gray-600 max-w-xl leading-relaxed">
-            Discover the unique benefits of partnering with TransLogistics PRO.
-            Our value proposition revolves around elevating your logistics
-            experience, ensuring professionalism, precision, and perfection in
-            every operation.
-          </p>
+          <motion.p
+            variants={item}
+            className="mt-6 text-gray-600 max-w-xl leading-relaxed"
+          >
+            We are committed to delivering excellence in every aspect of
+            international trade. Our customer-focused approach, strong global
+            network, and strict quality standards make us a trusted partner for
+            import and export services.
+          </motion.p>
 
           {/* Bullet Points */}
-          <ul className="mt-6 space-y-4">
+          <motion.ul variants={container} className="mt-6 space-y-4">
             {[
-              "Elevate your logistics experience with us.",
-              "Professionalism and precision in every operation.",
-              "A partnership built on trust and reliability.",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-3">
+              "High-Quality Products",
+              "Global Trade Expertise",
+              "On-Time & Secure Delivery",
+              "Transparent Documentation",
+              "Competitive Pricing",
+             
+              
+            ].map((text, i) => (
+              <motion.li
+                key={i}
+                variants={item}
+                className="flex items-start gap-3"
+              >
                 <span className="text-orange-500 text-xl">➤</span>
-                <span className="text-gray-700">{item}</span>
-              </li>
+                <span className="text-gray-700">{text}</span>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
 
-          {/* Stats */}
-          <div className="mt-12 grid grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-4xl font-bold text-black">300+</h3>
-              <p className="text-sm text-gray-600 mt-1">
-                Warehouses <br /> Managed
-              </p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-black">250+</h3>
-              <p className="text-sm text-gray-600 mt-1">
-                Supply <br /> Engineers
-              </p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-black">25+</h3>
-              <p className="text-sm text-gray-600 mt-1">
-                Countries <br /> Covered
-              </p>
-            </div>
-          </div>
+         
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="relative">
+        <motion.div variants={item} className="relative flex justify-center">
           <div className="rounded-xl overflow-hidden">
             <Image
               src={whyChooseUs}
@@ -69,24 +89,32 @@ export default function WhyChoose() {
           </div>
 
           {/* Floating Card */}
-          <div className="absolute bottom-10 -left-20 bg-white shadow-xl rounded-xl p-6 w-72 hidden md:block">
+          <motion.div
+            variants={item}
+            className="absolute bottom-10 -left-20 bg-white shadow-xl rounded-xl p-6 w-72 hidden md:block"
+          >
             <div className="w-12 h-12 bg-orange-500 text-white flex items-center justify-center rounded-full mb-4">
               👍
             </div>
             <h4 className="font-semibold text-lg">
-              Quality Management <br /> System
+              Expanding Businesses  <br /> Beyond Borders
             </h4>
             <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
+             To simplify international trade by providing reliable, efficient, and ethical import–export solutions.
             </p>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
-      {/* Scroll Top Button (optional like image) */}
-      <div className="fixed bottom-6 right-6 bg-orange-500 text-white w-12 h-12 rounded-xl flex items-center justify-center shadow-lg cursor-pointer">
+      {/* Scroll Top Button */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="fixed bottom-6 right-6 bg-orange-500 text-white w-12 h-12 rounded-xl flex items-center justify-center shadow-lg cursor-pointer"
+      >
         ↑
-      </div>
+      </motion.div>
     </section>
   );
 }

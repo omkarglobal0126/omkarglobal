@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import Breadcrumbs from "@/app/components/hooks/Breadcrumbs";
 import breadcrumbs_image from "@/public/components/about.jpg";
 import { useEffect, useState } from "react";
@@ -15,10 +16,36 @@ export default function BuildTogether({ subCategory }) {
       .then(setProducts);
   }, [subCategory]);
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const leftAnim = {
+    hidden: { opacity: 0, x: -60 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="bg-white">
       {/* Breadcrumbs */}
-       <Breadcrumbs
+      <Breadcrumbs
         items={[
           {
             page: "Fruits",
@@ -30,20 +57,28 @@ export default function BuildTogether({ subCategory }) {
         ]}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
           {/* LEFT IMAGE SECTION */}
-          <div className="relative">
+          <motion.div variants={leftAnim} className="relative">
             {/* Stats Card */}
-            <div className="absolute top-4 left-4 lg:-top-6 lg:-left-6 bg-white shadow-lg rounded-xl px-5 py-3 z-10">
+            <motion.div
+              variants={item}
+              className="absolute top-4 left-4 lg:-top-6 lg:-left-6 bg-white shadow-lg rounded-xl px-5 py-3 z-10"
+            >
               <p className="text-xl sm:text-2xl font-bold text-gray-900">
                 8,800
               </p>
               <p className="text-xs sm:text-sm text-gray-500">
                 Industry Projects Completed
               </p>
-            </div>
+            </motion.div>
 
             {/* Main Image */}
             <div className="rounded-xl overflow-hidden">
@@ -57,8 +92,11 @@ export default function BuildTogether({ subCategory }) {
               />
             </div>
 
-            {/* Secondary Image (Desktop only) */}
-            <div className="hidden lg:block absolute -bottom-14 -right-10 w-72 rounded-xl overflow-hidden shadow-lg">
+            {/* Secondary Image */}
+            <motion.div
+              variants={item}
+              className="hidden lg:block absolute -bottom-14 -right-10 w-72 rounded-xl overflow-hidden shadow-lg"
+            >
               <Image
                 src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc"
                 alt="Construction Site"
@@ -66,61 +104,50 @@ export default function BuildTogether({ subCategory }) {
                 height={220}
                 className="object-cover"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* RIGHT CONTENT SECTION */}
-          <div className="space-y-6">
-            <p className="text-sm uppercase tracking-widest text-orange-500 font-semibold">
-              Welcome to Company
-            </p>
+          <motion.div variants={container} className="space-y-6">
+          
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            <motion.h2
+              variants={item}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
+            >
               Let’s Build Something <br />
               <span className="text-orange-500">Creative Together</span>
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-500 max-w-xl">
+            <motion.p variants={item} className="text-gray-500 max-w-xl">
               30+ Years of working experience with global industries. There are
               many variations of passages of Lorem Ipsum available, but the
               majority have suffered alteration in some form.
-            </p>
+            </motion.p>
 
             {/* Bullet Points */}
-            <ul className="space-y-3">
+            <motion.ul variants={container} className="space-y-3">
               {[
-                "Lorem Ipsum is not simply random text",
-                "If you are going to use a passage",
-                "Making this the first true generator on the Internet",
-                "Various versions have evolved over the years",
-              ].map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
+                "International quality standards.",
+                "Safe and hygienic packaging.",
+                "Complete export documentation.",
+                "Flexible order quantities.",
+              ].map((text, index) => (
+                <motion.li
+                  key={index}
+                  variants={item}
+                  className="flex items-start gap-3"
+                >
                   <CheckCircle className="text-orange-500 w-5 h-5 mt-1 shrink-0" />
-                  <span className="text-gray-600">{item}</span>
-                </li>
+                  <span className="text-gray-600">{text}</span>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
 
-            {/* Signature */}
-            <div className="flex items-center gap-4 pt-6">
-              <div className="w-14 h-14 rounded-full overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1607746882042-944635dfe10e"
-                  alt="Founder"
-                  width={56}
-                  height={56}
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">Kevin Martin</p>
-                <p className="text-sm text-gray-500">Company Founder</p>
-              </div>
-            </div>
-          </div>
-
+       
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
