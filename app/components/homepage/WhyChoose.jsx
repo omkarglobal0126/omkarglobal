@@ -79,7 +79,7 @@ export default function WhyChoose() {
         {/* RIGHT IMAGE */}
         <motion.div variants={item} className="relative flex justify-center">
           <div className="rounded-xl overflow-hidden">
-            <img
+            <Image
               src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952129/6512_f8fh2c.jpg"
               alt="Warehouse management"
               width={600}

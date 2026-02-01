@@ -26,7 +26,7 @@ export default function RequestQuote() {
     <section className="relative">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <img
+        <Image
           src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952169/132340_dv9llz.jpg"
           alt="Logistics background"
           fill
@@ -57,10 +57,7 @@ export default function RequestQuote() {
             Request Quote
           </motion.span>
 
-          <motion.h2
-            variants={item}
-            className="text-3xl font-bold mt-2 mb-6"
-          >
+          <motion.h2 variants={item} className="text-3xl font-bold mt-2 mb-6">
             Request Quote Form
           </motion.h2>
 

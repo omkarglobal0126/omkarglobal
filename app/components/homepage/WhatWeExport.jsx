@@ -88,7 +88,6 @@ const exportsData = [
   },
 ];
 
-
 export default function WhatWeExport() {
   const container = {
     hidden: { opacity: 0 },
@@ -137,7 +136,7 @@ export default function WhatWeExport() {
             >
               {/* Image */}
               <div className="relative overflow-hidden h-60">
-                <img
+                <Image
                   src={item.img}
                   alt={item.title}
                   fill

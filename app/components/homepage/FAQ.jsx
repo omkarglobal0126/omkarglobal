@@ -59,8 +59,6 @@ export default function FAQ() {
       >
         {/* LEFT FAQ */}
         <div>
-         
-
           <motion.h2
             variants={item}
             className="text-3xl md:text-4xl font-bold mt-2 mb-8"
@@ -76,9 +74,7 @@ export default function FAQ() {
                 className="border border-gray-200 rounded-lg overflow-hidden"
               >
                 <button
-                  onClick={() =>
-                    setOpenIndex(openIndex === index ? -1 : index)
-                  }
+                  onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
                   className="w-full flex justify-between items-center p-4 text-left font-medium"
                 >
                   <span>{faqItem.q}</span>
@@ -103,7 +99,7 @@ export default function FAQ() {
 
         {/* RIGHT IMAGE */}
         <motion.div variants={item} className="relative">
-          <img
+          <Image
             src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952319/2151998711_ugsraw.jpg"
             alt="Logistics Truck"
             width={600}

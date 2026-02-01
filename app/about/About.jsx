@@ -44,7 +44,7 @@ export default function About() {
           {/* LEFT IMAGE */}
           <motion.div variants={leftImage} className="relative">
             <div className="overflow-hidden rounded-3xl">
-              <img
+              <Image
                 src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952126/2149128344_rx1zmm.jpg"
                 alt="Factory Interior"
                 width={700}
@@ -60,7 +60,7 @@ export default function About() {
               variants={item}
               className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
             >
-             Delivering Reliable Global  <br /> Trade Solutions
+              Delivering Reliable Global <br /> Trade Solutions
             </motion.h2>
 
             <motion.p
@@ -91,9 +91,9 @@ export default function About() {
             <motion.ul variants={container} className="space-y-4 mb-10">
               {[
                 "Integrity & Transparency",
-              "Customer-First Approach",
-              "Quality Commitment",
-              "Long-Term Partnerships",
+                "Customer-First Approach",
+                "Quality Commitment",
+                "Long-Term Partnerships",
               ].map((text, index) => (
                 <motion.li
                   key={index}

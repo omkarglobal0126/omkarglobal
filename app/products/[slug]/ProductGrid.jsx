@@ -57,7 +57,7 @@ export default function ProductGrid({ subCategory }) {
             className="bg-white p-4 rounded-xl shadow hover:shadow-xl transition"
           >
             <div className="aspect-square rounded-lg overflow-hidden">
-              <img
+              <Image
                 src={p.images[0]}
                 alt={p.name}
                 className="w-full h-full object-cover"
@@ -71,9 +71,7 @@ export default function ProductGrid({ subCategory }) {
       </motion.div>
 
       {!products.length && (
-        <p className="text-center text-gray-500 mt-10">
-          No products found
-        </p>
+        <p className="text-center text-gray-500 mt-10">No products found</p>
       )}
     </section>
   );
