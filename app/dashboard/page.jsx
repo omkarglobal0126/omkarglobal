@@ -12,6 +12,7 @@ import {
   Upload,
   X,
   Package,
+  Tag,
 } from "lucide-react";
 
 const SUB_CATEGORIES = {
@@ -33,6 +34,7 @@ export default function ProductDashboard() {
     category: "",
     subCategory: "",
     images: [],
+    items: [], // Fruits storage array
     description: "",
   });
 
@@ -89,6 +91,23 @@ export default function ProductDashboard() {
     }));
   };
 
+  // --- FRUIT/ITEM HANDLERS ---
+  const handleAddItem = (e) => {
+    if (e.key === 'Enter' && e.target.value.trim() !== '') {
+      e.preventDefault();
+      const newItem = e.target.value.trim();
+      if (!form.items.includes(newItem)) {
+        setForm({ ...form, items: [...form.items, newItem] });
+      }
+      e.target.value = '';
+    }
+  };
+
+  const removeFruitItem = (index) => {
+    setForm({ ...form, items: form.items.filter((_, i) => i !== index) });
+  };
+  // ---------------------------
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.images.length === 0) return alert("Please upload at least one image");
@@ -111,7 +130,7 @@ export default function ProductDashboard() {
   };
 
   const resetForm = () => {
-    setForm({ name: "", category: "", subCategory: "", images: [], description: "" });
+    setForm({ name: "", category: "", subCategory: "", images: [], items: [], description: "" });
     setEditingId(null);
   };
 
@@ -158,7 +177,7 @@ export default function ProductDashboard() {
         {/* MAIN CONTENT GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-10 items-start">
           
-          {/* SIDEBAR FORM (Moves to top on mobile for easy access) */}
+          {/* SIDEBAR FORM */}
           <aside className="lg:sticky lg:top-10 order-1 lg:order-2 space-y-6">
             <div className="bg-white rounded-2xl border border-slate-200 shadow-xl lg:shadow-md p-5 md:p-6 overflow-hidden relative">
               <div className="flex items-center justify-between mb-6">
@@ -172,16 +191,36 @@ export default function ProductDashboard() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block ml-1">Title</label>
-                  <input
-                    required
-                    placeholder="E.g. Organic Basmati Rice"
-                    className="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  />
+                 <div>
+                  <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block ml-1">Images</label>
+                  <div 
+                    onClick={() => fileInputRef.current?.click()}
+                    className="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:bg-blue-50/50 hover:border-blue-300 cursor-pointer transition-all group"
+                  >
+                    <Upload className="w-6 h-6 mx-auto mb-2 text-slate-400 group-hover:text-blue-500" />
+                    <p className="text-xs font-medium text-slate-500">Tap to upload photos</p>
+                    <input type="file" ref={fileInputRef} hidden multiple accept="image/*" onChange={handleImageUpload} />
+                  </div>
+                  
+                  {uploading && <div className="mt-2 flex items-center gap-2 text-blue-500 text-xs font-medium"><Loader2 className="w-3 h-3 animate-spin" /> Processing...</div>}
+
+                  <div className="flex gap-2 flex-wrap mt-3">
+                    {form.images.map((img, i) => (
+                      <div key={i} className="relative group w-16 h-16">
+                        <img src={img} className="w-full h-full object-cover rounded-lg border border-slate-200" alt="Preview" />
+                        <button 
+                          type="button"
+                          onClick={() => removeImage(i)}
+                          className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full p-0.5 shadow-lg transition-opacity"
+                        >
+                          <X size={12} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
+             
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -210,37 +249,47 @@ export default function ProductDashboard() {
                     </select>
                   </div>
                 </div>
+                   <div>
+                  <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block ml-1">Title</label>
+                  <input
+                    required
+                    placeholder="E.g. Fresh Fruit Box"
+                    className="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  />
+                </div>
 
+                {/* FRUITS TAGS INPUT */}
                 <div>
-                  <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block ml-1">Images</label>
-                  <div 
-                    onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:bg-blue-50/50 hover:border-blue-300 cursor-pointer transition-all group"
-                  >
-                    <Upload className="w-6 h-6 mx-auto mb-2 text-slate-400 group-hover:text-blue-500" />
-                    <p className="text-xs font-medium text-slate-500">Tap to upload photos</p>
-                    <input type="file" ref={fileInputRef} hidden multiple accept="image/*" onChange={handleImageUpload} />
-                  </div>
-                  
-                  {uploading && <div className="mt-2 flex items-center gap-2 text-blue-500 text-xs font-medium"><Loader2 className="w-3 h-3 animate-spin" /> Processing images...</div>}
-
-                  <div className="flex gap-2 flex-wrap mt-3">
-                    {form.images.map((img, i) => (
-                      <div key={i} className="relative group w-16 h-16">
-                        <img src={img} className="w-full h-full object-cover rounded-lg border border-slate-200" alt="Preview" />
-                        <button 
-                          type="button"
-                          onClick={() => removeImage(i)}
-                          className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full p-0.5 shadow-lg lg:opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <X size={12} />
-                        </button>
+                  <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block ml-1">Fruits/Items (Press Enter)</label>
+                  <div className="space-y-3">
+                    <div className="relative">
+                      <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input
+                        placeholder="Add Apple, Mango..."
+                        onKeyDown={handleAddItem}
+                        className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm"
+                      />
+                    </div>
+                    {form.items.length > 0 && (
+                      <div className="flex flex-wrap gap-2 p-2 bg-slate-50 rounded-xl border border-slate-100">
+                        {form.items.map((item, idx) => (
+                          <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-200 text-slate-700 text-xs font-bold rounded-lg shadow-sm">
+                            {item}
+                            <button type="button" onClick={() => removeFruitItem(idx)} className="text-slate-400 hover:text-red-500">
+                              <X size={14} />
+                            </button>
+                          </span>
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
                 </div>
 
-                <div>
+               
+
+                {/* <div>
                   <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block ml-1">Description</label>
                   <textarea
                     placeholder="Describe the product details..."
@@ -249,7 +298,7 @@ export default function ProductDashboard() {
                     value={form.description}
                     onChange={(e) => setForm({ ...form, description: e.target.value })}
                   />
-                </div>
+                </div> */}
 
                 <button
                   disabled={submitting || uploading}
@@ -262,7 +311,7 @@ export default function ProductDashboard() {
             </div>
           </aside>
 
-          {/* PRODUCT LIST (Moves to bottom on mobile) */}
+          {/* PRODUCT LIST */}
           <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden order-2 lg:order-1">
             {loading ? (
               <div className="py-24 flex flex-col items-center justify-center text-slate-400">
@@ -275,6 +324,7 @@ export default function ProductDashboard() {
                   <thead>
                     <tr className="bg-slate-50 border-b border-slate-100">
                       <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Product Details</th>
+                     
                       <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Category</th>
                       <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Actions</th>
                     </tr>
@@ -297,6 +347,7 @@ export default function ProductDashboard() {
                             </div>
                           </div>
                         </td>
+                       
                         <td className="px-6 py-4">
                           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] md:text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 whitespace-nowrap">
                             {p.category}
@@ -307,7 +358,11 @@ export default function ProductDashboard() {
                             <button
                               onClick={() => {
                                 setEditingId(p._id);
-                                setForm({ ...p, description: p.description || "" });
+                                setForm({ 
+                                  ...p, 
+                                  items: p.items || [], 
+                                  description: p.description || "" 
+                                });
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                               }}
                               className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"

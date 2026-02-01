@@ -139,7 +139,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row gap-3 items-center justify-between text-sm text-center sm:text-left">
           <p>
-            © {new Date().getFullYear()} Transport Logistic. All Rights
+            © {new Date().getFullYear()} Omkar Global. All Rights
             Reserved.
           </p>
 
