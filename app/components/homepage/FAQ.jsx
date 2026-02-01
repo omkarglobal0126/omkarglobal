@@ -103,8 +103,8 @@ export default function FAQ() {
 
         {/* RIGHT IMAGE */}
         <motion.div variants={item} className="relative">
-          <Image
-            src={faq}
+          <img
+            src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952319/2151998711_ugsraw.jpg"
             alt="Logistics Truck"
             width={600}
             height={400}

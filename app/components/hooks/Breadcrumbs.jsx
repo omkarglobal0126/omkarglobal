@@ -33,7 +33,7 @@ export default function Breadcrumbs({ items = [] }) {
         className="w-full relative overflow-hidden max-w-7xl py-24 mt-24 max-lg:mt-12 max-xl:py-10 rounded-2xl flex justify-center items-center shadow-xl"
       >
         {/* Background Image */}
-        <Image
+        <img
           className="absolute left-0 w-full h-full object-cover"
           src={items[0]?.image}
           alt=""

@@ -26,63 +26,63 @@ const exportsData = [
   {
     title: "Grains & Cereals",
     desc: "We supply high-quality grains and cereals sourced from trusted farms, ensuring purity, nutritional value, and compliance with international food standards.",
-    img: service1,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952317/2150170288_mnv2ot.jpg",
     link: "/products/Grains & Cereals",
     icon: <PiGrainsDuotone />,
   },
   {
     title: "Fruits",
     desc: "Our fresh fruits are carefully selected, hygienically packed, and exported to retain natural taste, freshness, and nutritional richness.",
-    img: service2,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952278/142098_m9os07.jpg",
     link: "/products/Fruits",
     icon: <GiFruitBowl />,
   },
   {
     title: "Vegetables",
     desc: "We export farm-fresh vegetables that meet global quality requirements, ensuring freshness, safety, and timely delivery to international markets.",
-    img: service3,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952257/103355_l3ya0z.jpg",
     link: "/products/Vegetables",
     icon: <LuVegan />,
   },
   {
     title: "Handicrafts & Decorative",
     desc: "Our handcrafted and decorative items reflect rich Indian craftsmanship, designed with precision and creativity for global buyers.",
-    img: service4,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952200/2151680946_qnkcvk.jpg",
     link: "/products/Handicrafts & Decorative",
     icon: <SiSnapcraft />,
   },
   {
     title: "Copper Products",
     desc: "We offer premium copper products known for their durability, traditional value, and health benefits, crafted by skilled artisans.",
-    img: service5,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952190/4558_wkqb5i.jpg",
     link: "/products/Copper Products",
     icon: <RiCopperCoinLine />,
   },
   {
     title: "Kitchenware & Cutlery",
     desc: "Our kitchenware and cutlery products combine functionality with quality materials, designed to meet international usage and safety standards.",
-    img: service6,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952161/2149491446_vizmco.jpg",
     link: "/products/Kitchenware & Cutlery",
     icon: <FaKitchenSet />,
   },
   {
     title: "Textiles & Apparel",
     desc: "We export quality textiles and apparel featuring superior fabrics, modern designs, and reliable stitching suitable for global markets.",
-    img: service7,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952196/1034_kjgd9o.jpg",
     link: "/products/Textiles & Apparel",
     icon: <GiClothes />,
   },
   {
     title: "Imitation Jewellery",
     desc: "Our imitation jewellery offers elegant designs, fine finishing, and affordability, making it popular across international fashion markets.",
-    img: service8,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952189/4326_gi4ct4.jpg",
     link: "/products/Imitation Jewellery",
     icon: <GiJewelCrown />,
   },
   {
     title: "Beauty Products",
     desc: "We supply carefully formulated beauty products that meet quality, safety, and packaging standards required for international trade.",
-    img: service9,
+    img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952158/2151053864_mazbju.jpg",
     link: "/products/Beauty Products",
     icon: <MdFaceRetouchingNatural />,
   },
@@ -136,12 +136,12 @@ export default function WhatWeExport() {
               className="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden"
             >
               {/* Image */}
-              <div className="relative h-48">
-                <Image
+              <div className="relative overflow-hidden h-60">
+                <img
                   src={item.img}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
 

@@ -51,7 +51,7 @@ export default function BuildTogether({ subCategory }) {
             page: "Fruits",
             label: "Products",
             href: "",
-            image: breadcrumbs_image,
+            image: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952221/2151998695_wyvqa3.jpg",
           },
           { label: "Fruits" },
         ]}

@@ -11,28 +11,28 @@ const services = [
   {
     title: "Fruits & Vegetables",
     desc: "Premium quality agricultural produce sourced from trusted farm.",
-    image: services_img1,
+    image: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952311/59440_qeriiv.jpg",
     top: "top-0",
     link: "/products",
   },
   {
     title: "Handicrafts & Decorative Products",
     desc: "Traditional and contemporary handicrafts crafted by skilled artisans, ideal for home décor and gifting.",
-    image: services_img2,
+    image: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952291/2150466783_sqtysw.jpg",
     top: "top-20 max-lg:top-0",
     link: "/products",
   },
   {
     title: "Lifestyle",
     desc: "Premium lifestyle products including home décor, handicrafts, kitchen essentials, and wellness items crafted for everyday comfort and modern living.",
-    image: services_img3,
+    image: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952252/2147645735_z1whnh.jpg",
     top: "top-0",
     link: "/products",
   },
   {
     title: "Fashion",
     desc: "Quality textiles, apparel, and imitation jewellery designed to match contemporary trends with reliable sourcing and consistent quality.",
-    image: services_img4,
+    image: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952240/5974_vrlwrv.jpg",
     top: "top-20 max-lg:top-0",
     link: "/products",
   },
@@ -72,7 +72,7 @@ export default function Services() {
             className={`group relative h-[420px] overflow-hidden shadow-lg ${service.top}`}
           >
             {/* Background Image */}
-            <Image
+            <img
               src={service.image}
               alt={service.title}
               fill

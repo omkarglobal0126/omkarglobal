@@ -12,7 +12,7 @@ export default function Contact() {
     },
     {
       title: "Support Email",
-      desc: ["dewanganakashdeep97@gmail.com"],
+      desc: ["info@omkarglobalexim.com"],
       icon: Mail,
     },
     {

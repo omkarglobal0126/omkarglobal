@@ -44,8 +44,8 @@ export default function About() {
           {/* LEFT IMAGE */}
           <motion.div variants={leftImage} className="relative">
             <div className="overflow-hidden rounded-3xl">
-              <Image
-                src={hero}
+              <img
+                src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952126/2149128344_rx1zmm.jpg"
                 alt="Factory Interior"
                 width={700}
                 height={600}

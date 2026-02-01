@@ -126,7 +126,7 @@ export default function Footer() {
               <IoCall /> +91 9109803735
             </li>
             <li className="flex justify-start items-center gap-1">
-              <IoMdMail /> dewanganakashdeep97@gmail.com
+              <IoMdMail /> info@omkarglobalexim.com
             </li>
             <li className="flex justify-start items-center gap-1">
               <FaClock /> Mon – Sun: 24 Hours
@@ -138,10 +138,7 @@ export default function Footer() {
       {/* BOTTOM BAR */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row gap-3 items-center justify-between text-sm text-center sm:text-left">
-          <p>
-            © {new Date().getFullYear()} Omkar Global. All Rights
-            Reserved.
-          </p>
+          <p>© {new Date().getFullYear()} Omkar Global. All Rights Reserved.</p>
 
           <div className="flex gap-4">
             <Link href="/privacy-policy" className="hover:text-orange-400">

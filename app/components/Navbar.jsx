@@ -21,10 +21,10 @@ export default function Navbar() {
               <IoCall /> +91 9109803735
             </a>
             <a
-              href="mailto:dewanganakashdeep97@gmail.com"
+              href="mailto:info@omkarglobalexim.com"
               className="flex gap-1 items-center"
             >
-              <IoMdMail /> dewanganakashdeep97@gmail.com
+              <IoMdMail /> info@omkarglobalexim.com
             </a>
           </div>
           <span className="flex items-center gap-1">
@@ -64,24 +64,24 @@ export default function Navbar() {
               <div className="absolute left-0 top-full pt-5 w-[640px] text-gray-800 rounded-2xl shadow-xl opacity-0 invisible translate-y-3 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition">
                 <div className="bg-white rounded-lg">
                   <div className="grid grid-cols-3 gap-8 p-8 text-sm">
-                  {PRODUCT_COLUMNS.map((col) => (
-                    <div key={col.title}>
-                      <h4 className="font-bold mb-3">{col.title}</h4>
-                      <ul className="space-y-2">
-                        {col.links.map(([label, href]) => (
-                          <li key={label}>
-                            <Link
-                              href={href}
-                              className="hover:text-orange-500"
-                            >
-                              {label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+                    {PRODUCT_COLUMNS.map((col) => (
+                      <div key={col.title}>
+                        <h4 className="font-bold mb-3">{col.title}</h4>
+                        <ul className="space-y-2">
+                          {col.links.map(([label, href]) => (
+                            <li key={label}>
+                              <Link
+                                href={href}
+                                className="hover:text-orange-500"
+                              >
+                                {label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </li>
@@ -105,10 +105,7 @@ export default function Navbar() {
           </Link>
 
           {/* MOBILE TOGGLE */}
-          <button
-            className="md:hidden"
-            onClick={() => setOpen(!open)}
-          >
+          <button className="md:hidden" onClick={() => setOpen(!open)}>
             {open ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
@@ -116,7 +113,9 @@ export default function Navbar() {
         {/* MOBILE MENU */}
         <div
           className={`md:hidden bg-slate-900 transition-all ${
-            open ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+            open
+              ? "max-h-screen opacity-100"
+              : "max-h-0 opacity-0 overflow-hidden"
           }`}
         >
           <ul className="px-6 py-6 space-y-4">
@@ -139,9 +138,7 @@ export default function Navbar() {
               >
                 Products
                 <ChevronDown
-                  className={`transition ${
-                    productsOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition ${productsOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
@@ -155,10 +152,7 @@ export default function Navbar() {
                       <ul className="space-y-2 mt-2">
                         {col.links.map(([label, href]) => (
                           <li key={label}>
-                            <Link
-                              href={href}
-                              onClick={() => setOpen(false)}
-                            >
+                            <Link href={href} onClick={() => setOpen(false)}>
                               {label}
                             </Link>
                           </li>

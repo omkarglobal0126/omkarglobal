@@ -26,8 +26,8 @@ export default function RequestQuote() {
     <section className="relative">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <Image
-          src={contactUs}
+        <img
+          src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952169/132340_dv9llz.jpg"
           alt="Logistics background"
           fill
           className="object-cover"

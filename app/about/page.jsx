@@ -9,7 +9,7 @@ import breadcrumbs_image from "@/public/components/about.jpg";
 export default function page() {
   return (
     <div> 
-      <Breadcrumbs items={[{ label: "About", page:"About", image: breadcrumbs_image }]}/>
+      <Breadcrumbs items={[{ label: "About", page:"About", image: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952221/2151998695_wyvqa3.jpg" }]}/>
       <About/>
       <Services/>
       <WorkingProcess/>
