@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ProductGrid({ subCategory }) {
   const [products, setProducts] = useState([]);
@@ -57,7 +58,7 @@ export default function ProductGrid({ subCategory }) {
             className="bg-white p-4 rounded-xl shadow hover:shadow-xl transition"
           >
             <div className="aspect-square rounded-lg overflow-hidden">
-              <Image
+              <img
                 src={p.images[0]}
                 alt={p.name}
                 className="w-full h-full object-cover"

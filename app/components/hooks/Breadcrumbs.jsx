@@ -72,7 +72,7 @@ export default function Breadcrumbs({ items = [] }) {
                 <li key={index} className="flex gap-2 items-center">
                   <ChevronRight size={18} />
                   {isLast ? (
-                    <p className="text-orange-400">{item.label}</p>
+                    <p className="text-white font-bold">{item.label}</p>
                   ) : (
                     <a href={item.href} className="hover:underline">
                       {item.label}

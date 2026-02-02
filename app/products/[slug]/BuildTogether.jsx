@@ -15,7 +15,7 @@ export default function BuildTogether({ subCategory }) {
       .then((res) => res.json())
       .then(setProducts);
   }, [subCategory]);
-
+  const productData = products.length > 0 ? products[0] : null;
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -48,12 +48,13 @@ export default function BuildTogether({ subCategory }) {
       <Breadcrumbs
         items={[
           {
-            page: "Fruits",
+            page: productData?.category,
             label: "Products",
-            href: "",
-            image: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952221/2151998695_wyvqa3.jpg",
+            href: "/products", // Aap apna main products link yahan de sakte hain
+            image:
+              "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952221/2151998695_wyvqa3.jpg",
           },
-          { label: "Fruits" },
+          { label: productData?.subCategory },
         ]}
       />
 
@@ -83,7 +84,7 @@ export default function BuildTogether({ subCategory }) {
             {/* Main Image */}
             <div className="rounded-xl overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1581090700227-1e37b190418e"
+                src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952181/2149214306_imswms.jpg"
                 alt="Engineer Working"
                 width={600}
                 height={420}
@@ -91,38 +92,25 @@ export default function BuildTogether({ subCategory }) {
                 className="object-cover w-full h-auto"
               />
             </div>
-
-            {/* Secondary Image */}
-            <motion.div
-              variants={item}
-              className="hidden lg:block absolute -bottom-14 -right-10 w-72 rounded-xl overflow-hidden shadow-lg"
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc"
-                alt="Construction Site"
-                width={300}
-                height={220}
-                className="object-cover"
-              />
-            </motion.div>
           </motion.div>
 
           {/* RIGHT CONTENT SECTION */}
           <motion.div variants={container} className="space-y-6">
-          
-
             <motion.h2
               variants={item}
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
             >
-              Let’s Build Something <br />
-              <span className="text-orange-500">Creative Together</span>
+              Delivering Reliable Global
+              {" "}
+              <span className="text-orange-500">Trade Solutions </span>
             </motion.h2>
 
             <motion.p variants={item} className="text-gray-500 max-w-xl">
-              30+ Years of working experience with global industries. There are
-              many variations of passages of Lorem Ipsum available, but the
-              majority have suffered alteration in some form.
+              We are a professional Import–Export company specializing in
+              sourcing, supplying, and distributing products across
+              international markets. With a strong understanding of global trade
+              regulations and logistics, we ensure smooth and hassle-free
+              transactions for our clients.
             </motion.p>
 
             {/* Bullet Points */}
@@ -143,8 +131,6 @@ export default function BuildTogether({ subCategory }) {
                 </motion.li>
               ))}
             </motion.ul>
-
-       
           </motion.div>
         </div>
       </motion.div>

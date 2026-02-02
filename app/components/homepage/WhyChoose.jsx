@@ -106,15 +106,7 @@ export default function WhyChoose() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll Top Button */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        className="fixed bottom-6 right-6 bg-orange-500 text-white w-12 h-12 rounded-xl flex items-center justify-center shadow-lg cursor-pointer"
-      >
-        ↑
-      </motion.div>
+     
     </section>
   );
 }

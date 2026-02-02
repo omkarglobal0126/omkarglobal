@@ -14,6 +14,7 @@ import {
   Package,
   Tag,
 } from "lucide-react";
+import Image from "next/image";
 
 const SUB_CATEGORIES = {
   "Food & Agriculture": [
@@ -263,7 +264,7 @@ export default function ProductDashboard() {
                   <div className="flex gap-2 flex-wrap mt-3">
                     {form.images.map((img, i) => (
                       <div key={i} className="relative group w-16 h-16">
-                        <Image
+                        <img
                           src={img}
                           className="w-full h-full object-cover rounded-lg border border-slate-200"
                           alt="Preview"
@@ -434,7 +435,7 @@ export default function ProductDashboard() {
                           <div className="flex items-center gap-4">
                             <div className="relative w-12 h-12 md:w-14 md:h-14 shrink-0 overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
                               {p.images?.[0] ? (
-                                <Image
+                                <img
                                   src={p.images[0]}
                                   className="w-full h-full object-cover"
                                   alt={p.name}
