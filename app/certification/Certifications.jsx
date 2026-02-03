@@ -62,8 +62,8 @@ export default function Certifications() {
           <div className="h-1 w-12 bg-blue-600 mx-auto mt-4" />
 
           <p className="mt-6 text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Omkar Global Export Import is recognized by the Government of India
-            and adheres to international trade standards.
+            Omkar Global is recognized by the Government of India and adheres to
+            international trade standards.
           </p>
         </motion.div>
 
