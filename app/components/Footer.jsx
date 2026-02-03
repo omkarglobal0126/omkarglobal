@@ -144,10 +144,11 @@ export default function Footer() {
 
       {/* BOTTOM BAR */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row gap-3 items-center justify-between text-sm text-center sm:text-left">
-          <p>© {new Date().getFullYear()} Omkar Global. Designed & Developed by</p>
-
-         
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row gap-3 items-center justify-center text-sm text-center sm:text-left">
+          <p>
+            © {new Date().getFullYear()} Omkar Global. Designed & Developed by{" "}
+            <a href="https://zerogravityweb.diginote.in/">zerogravityweb</a>
+          </p>
         </div>
       </div>
     </footer>
