@@ -69,7 +69,7 @@ export default function BuildTogether({ subCategory }) {
           {/* LEFT IMAGE SECTION */}
           <motion.div variants={leftAnim} className="relative">
             {/* Stats Card */}
-            <motion.div
+            {/* <motion.div
               variants={item}
               className="absolute top-4 left-4 lg:-top-6 lg:-left-6 bg-white shadow-lg rounded-xl px-5 py-3 z-10"
             >
@@ -79,7 +79,7 @@ export default function BuildTogether({ subCategory }) {
               <p className="text-xs sm:text-sm text-gray-500">
                 Industry Projects Completed
               </p>
-            </motion.div>
+            </motion.div> */}
 
             {/* Main Image */}
             <div className="rounded-xl overflow-hidden">

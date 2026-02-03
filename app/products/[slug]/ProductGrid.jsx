@@ -66,7 +66,12 @@ export default function ProductGrid({ subCategory }) {
             </div>
 
             <h3 className="mt-4 font-semibold">{p.name}</h3>
-            <p className="text-sm text-gray-500">{p.category}</p>
+            {/* <p className="text-sm text-gray-500">{p.category}</p> */}
+            <ul className="text-sm text-gray-500 space-y-1 list-disc mt-2 list-inside">
+              {p.items.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
           </motion.div>
         ))}
       </motion.div>

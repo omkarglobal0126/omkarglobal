@@ -157,15 +157,23 @@ export default function ProductDashboard() {
     setEditingId(null);
   };
 
-  const filteredProducts = useMemo(() => {
-    return products
-      .filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()))
-      .sort((a, b) =>
-        sortOrder === "asc"
-          ? a.name.localeCompare(b.name)
-          : b.name.localeCompare(a.name),
-      );
-  }, [products, searchTerm, sortOrder]);
+const filteredProducts = useMemo(() => {
+  return products
+    .filter((p) =>
+      (p?.name ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      const nameA = (a?.name ?? "").toLowerCase();
+      const nameB = (b?.name ?? "").toLowerCase();
+
+      return sortOrder === "asc"
+        ? nameA.localeCompare(nameB)
+        : nameB.localeCompare(nameA);
+    });
+}, [products, searchTerm, sortOrder]);
+
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans">
