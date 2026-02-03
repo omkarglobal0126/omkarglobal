@@ -69,7 +69,7 @@ const exportsData = [
     icon: <GiJewelCrown />,
   },
   {
-    title: "Beauty Products",
+    title: "Cosmetics Products",
     desc: "We supply carefully formulated beauty products that meet quality, safety, and packaging standards required for international trade.",
     img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952158/2151053864_mazbju.jpg",
     link: "/products/Beauty Products",
