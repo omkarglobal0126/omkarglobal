@@ -1,18 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
-
-import service1 from "@/public/services/service1.jpg";
-import service2 from "@/public/services/service2.jpg";
-import service3 from "@/public/services/service3.jpg";
-import service4 from "@/public/services/service4.jpg";
-import service5 from "@/public/services/service5.jpg";
-import service6 from "@/public/services/service6.jpg";
-import service7 from "@/public/services/service7.jpg";
-import service8 from "@/public/services/service8.jpg";
-import service9 from "@/public/services/service9.jpg";
 
 import { PiGrainsDuotone } from "react-icons/pi";
 import { GiFruitBowl, GiClothes, GiJewelCrown } from "react-icons/gi";
@@ -89,50 +78,20 @@ const exportsData = [
 ];
 
 export default function WhatWeExport() {
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const card = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
   return (
     <section className="py-20 bg-gray-50">
-      <motion.div
-        className="container mx-auto px-6"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
+      <div className="container mx-auto px-6">
         {/* Heading */}
-        <motion.h2
-          variants={card}
-          className="text-3xl font-bold text-center mb-12"
-        >
+        <h2 className="text-3xl font-bold text-center mb-12">
           What We Export
-        </motion.h2>
+        </h2>
 
         {/* Grid */}
-        <motion.div
-          variants={container}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {exportsData.map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              variants={card}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden"
+              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
               {/* Image */}
               <div className="relative overflow-hidden h-60">
@@ -140,13 +99,13 @@ export default function WhatWeExport() {
                   src={item.img}
                   alt={item.title}
                   fill
-                  className="object-cover w-full h-full"
+                  className="object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
               {/* Content */}
               <div className="flex">
-                <div className="px-4 h-18 text-3xl rounded-b-full bg-orange-500 border border-orange-500 flex items-center justify-center text-white">
+                <div className="px-4 h-18 text-3xl rounded-b-full bg-orange-500 flex items-center justify-center text-white">
                   {item.icon}
                 </div>
 
@@ -154,24 +113,23 @@ export default function WhatWeExport() {
                   <h3 className="text-lg font-semibold text-orange-600">
                     {item.title}
                   </h3>
+
                   <p className="text-sm text-gray-600 mt-3 leading-relaxed">
                     {item.desc}
                   </p>
 
-                  <div className="flex gap-3 mt-5">
-                    <a
-                      href={item.link}
-                      className="flex items-center gap-2 font-medium hover:text-orange-600 transition"
-                    >
-                      View Details <FaArrowRight />
-                    </a>
-                  </div>
+                  <a
+                    href={item.link}
+                    className="inline-flex items-center gap-2 mt-5 font-medium hover:text-orange-600 transition"
+                  >
+                    View Details <FaArrowRight />
+                  </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
