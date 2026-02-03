@@ -31,28 +31,28 @@ const exportCategories = [
         title: "Grains & Cereals",
         desc: "Premium quality grains and cereals sourced directly from farmers.",
         img: service1,
-        link: "/products/grains-cereals",
+        link: "/products/Grains Cereals",
         icon: <PiGrainsDuotone />, // grains
       },
       {
         title: "Fruits",
         desc: "Fresh fruits rich in nutrients and natural taste.",
         img: service2,
-        link: "/products/fruits",
+        link: "/products/Fruits",
         icon: <GiFruitBowl />, // fruits
       },
       {
         title: "Vegetables",
         desc: "Farm-fresh vegetables meeting international standards.",
         img: service3,
-        link: "/products/vegetables",
+        link: "/products/Vegetables",
         icon: <LuVegan />, // vegetables / organic
       },
       {
         title: "Grocery Products",
         desc: "Processed grocery items prepared with hygiene and care.",
         img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770054532/products/t5gtanmpxg0ri1926qur.jpg",
-        link: "/products/grocery-products",
+        link: "/products/Grocery Products",
         icon: <FaIndustry />, // processed / packaged goods
       },
     ],
@@ -65,28 +65,28 @@ const exportCategories = [
         title: "Handicrafts & Decorative",
         desc: "Traditional handmade decorative products.",
         img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952200/2151680946_qnkcvk.jpg",
-        link: "/products/handicrafts-decorative",
+        link: "/products/Handicrafts Decorative",
         icon: <SiSnapcraft />, // craft / handmade
       },
       {
         title: "Copper Products",
         desc: "High-quality copper items known for health benefits.",
         img: service5,
-        link: "/products/copper-products",
+        link: "/products/Copper Products",
         icon: <RiCopperCoinLine />, // copper
       },
       {
         title: "Kitchenware & Cutlery",
         desc: "Durable and modern kitchenware products.",
         img: service6,
-        link: "/products/kitchenware-cutlery",
+        link: "/products/Kitchenware Cutlery",
         icon: <FaKitchenSet />, // kitchen
       },
       {
         title: "Furniture Products",
         desc: "Wooden and modern furniture with premium finishing.",
         img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770052109/products/lsgo0jvilizmqlcvijzr.jpg",
-        link: "/products/furniture-products",
+        link: "/products/Furniture Products",
         icon: <MdOutlineChair />, // furniture
       },
     ],
@@ -99,21 +99,21 @@ const exportCategories = [
         title: "Textiles & Apparel",
         desc: "High-quality fabrics and fashionable garments.",
         img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770101265/products/ewxwky8rctkqyrfrtfmv.jpg",
-        link: "/products/textiles-apparel",
+        link: "/products/Textiles Apparel",
         icon: <GiClothes />, // clothing
       },
       {
         title: "Imitation Jewellery",
         desc: "Stylish imitation jewellery for modern trends.",
         img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770098602/products/h2tjdkhzlpoihgie0rki.jpg",
-        link: "/products/imitation-jewellery",
+        link: "/products/Imitation Jewellery",
         icon: <GiJewelCrown />, // jewellery
       },
       {
         title: "Cosmetic Products",
         desc: "Natural beauty and personal care products.",
         img: service11,
-        link: "/products/beauty-products",
+        link: "/products/Beauty Products",
         icon: <MdFaceRetouchingNatural />, // beauty / skincare
       },
     ],
