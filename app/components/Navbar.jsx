@@ -37,20 +37,20 @@ export default function Navbar() {
       <nav className="bg-slate-900/80 backdrop-blur border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* LOGO */}
-          <Link href="/" className="text-2xl font-bold">
+          <a href="/" className="text-2xl font-bold">
             Omkar <span className="text-orange-500">Global</span>
-          </Link>
+          </a>
 
           {/* DESKTOP MENU */}
           <ul className="hidden md:flex items-center gap-8 font-medium">
             {["Home", "About"].map((item) => (
               <li key={item}>
-                <Link
+                <a
                   href={`/${item === "Home" ? "" : item.toLowerCase()}`}
                   className="relative hover:text-orange-500 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-orange-500 hover:after:w-full after:transition-all"
                 >
                   {item}
-                </Link>
+                </a>
               </li>
             ))}
 
@@ -70,12 +70,12 @@ export default function Navbar() {
                         <ul className="space-y-2">
                           {col.links.map(([label, href]) => (
                             <li key={label}>
-                              <Link
+                              <a
                                 href={href}
                                 className="hover:text-orange-500"
                               >
                                 {label}
-                              </Link>
+                              </a>
                             </li>
                           ))}
                         </ul>
@@ -87,22 +87,22 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link
+              <a
                 href="/certification"
                 className="hover:text-orange-500 transition"
               >
                 Certificates
-              </Link>
+              </a>
             </li>
           </ul>
 
           {/* DESKTOP CTA */}
-          <Link
+          <a
             href="/contact"
             className="hidden md:block bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-lg font-semibold"
           >
             Contact Us
-          </Link>
+          </a>
 
           {/* MOBILE TOGGLE */}
           <button className="md:hidden" onClick={() => setOpen(!open)}>
@@ -120,14 +120,14 @@ export default function Navbar() {
         >
           <ul className="px-6 py-6 space-y-4">
             <li>
-              <Link href="/" onClick={() => setOpen(false)}>
+              <a href="/" onClick={() => setOpen(false)}>
                 Home
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href="/about" onClick={() => setOpen(false)}>
+              <a href="/about" onClick={() => setOpen(false)}>
                 About
-              </Link>
+              </a>
             </li>
 
             {/* MOBILE PRODUCTS */}
@@ -152,9 +152,9 @@ export default function Navbar() {
                       <ul className="space-y-2 mt-2">
                         {col.links.map(([label, href]) => (
                           <li key={label}>
-                            <Link href={href} onClick={() => setOpen(false)}>
+                            <a href={href} onClick={() => setOpen(false)}>
                               {label}
-                            </Link>
+                            </a>
                           </li>
                         ))}
                       </ul>
@@ -165,19 +165,19 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link href="/services" onClick={() => setOpen(false)}>
+              <a href="/services" onClick={() => setOpen(false)}>
                 Services
-              </Link>
+              </a>
             </li>
 
             <li>
-              <Link
+              <a
                 href="/contact"
                 className="block text-center bg-orange-500 py-2 rounded-lg"
                 onClick={() => setOpen(false)}
               >
                 Contact Us
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
