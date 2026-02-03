@@ -4,10 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const certifications = [
-  { name: "DGFT", img: "/certifications/dgft.png" },
-  { name: "APEDA", img: "/certifications/apeda.png" },
-  { name: "MSME", img: "/certifications/msme.png" },
-  { name: "GST", img: "/certifications/gst.png" },
+  { name: "FSSAI", img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770134619/WhatsApp_Image_2026-02-03_at_11.30.16_AM_gvd4bm.jpg" },
+  { name: "MSME", img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770134617/WhatsApp_Image_2026-02-03_at_11.30.33_AM_frlhqo.jpg" },
+  { name: "DGFT", img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770134616/WhatsApp_Image_2026-02-03_at_11.27.39_AM_fqujx8.jpg" },
+  { name: "APEDA", img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770134615/WhatsApp_Image_2026-02-03_at_11.29.30_AM_tqj6ap.jpg" },
+  { name: "GST", img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770134614/WhatsApp_Image_2026-02-03_at_11.29.02_AM_l9w2vv.jpg" },
 ];
 
 export default function Certifications() {
@@ -52,7 +53,7 @@ export default function Certifications() {
         {/* Logo Grid */}
         <motion.div
           variants={container}
-          className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12"
         >
           {certifications.map((itemData, index) => (
             <motion.div
@@ -60,7 +61,7 @@ export default function Certifications() {
               variants={item}
               className="flex flex-col items-center group transition-opacity duration-300 hover:opacity-80"
             >
-              <div className="relative shadow w-full h-90 md:w-70 md:h-80 grayscale hover:grayscale-0 transition-all duration-300">
+              <div className="relative shadow w-full h-90 md:w-70 md:h-80">
                 <Image
                   src={itemData.img}
                   alt={itemData.name}

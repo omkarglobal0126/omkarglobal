@@ -51,7 +51,7 @@ const exportCategories = [
       {
         title: "Grocery Products",
         desc: "Processed grocery items prepared with hygiene and care.",
-        img: service4,
+        img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770054532/products/t5gtanmpxg0ri1926qur.jpg",
         link: "/products/grocery-products",
         icon: <FaIndustry />, // processed / packaged goods
       },
@@ -64,28 +64,28 @@ const exportCategories = [
       {
         title: "Handicrafts & Decorative",
         desc: "Traditional handmade decorative products.",
-        img: service5,
+        img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1769952200/2151680946_qnkcvk.jpg",
         link: "/products/handicrafts-decorative",
         icon: <SiSnapcraft />, // craft / handmade
       },
       {
         title: "Copper Products",
         desc: "High-quality copper items known for health benefits.",
-        img: service6,
+        img: service5,
         link: "/products/copper-products",
         icon: <RiCopperCoinLine />, // copper
       },
       {
         title: "Kitchenware & Cutlery",
         desc: "Durable and modern kitchenware products.",
-        img: service7,
+        img: service6,
         link: "/products/kitchenware-cutlery",
         icon: <FaKitchenSet />, // kitchen
       },
       {
         title: "Furniture Products",
         desc: "Wooden and modern furniture with premium finishing.",
-        img: service8,
+        img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770052109/products/lsgo0jvilizmqlcvijzr.jpg",
         link: "/products/furniture-products",
         icon: <MdOutlineChair />, // furniture
       },
@@ -98,19 +98,19 @@ const exportCategories = [
       {
         title: "Textiles & Apparel",
         desc: "High-quality fabrics and fashionable garments.",
-        img: service9,
+        img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770101265/products/ewxwky8rctkqyrfrtfmv.jpg",
         link: "/products/textiles-apparel",
         icon: <GiClothes />, // clothing
       },
       {
         title: "Imitation Jewellery",
         desc: "Stylish imitation jewellery for modern trends.",
-        img: service10,
+        img: "https://res.cloudinary.com/dgybkwwys/image/upload/v1770098602/products/h2tjdkhzlpoihgie0rki.jpg",
         link: "/products/imitation-jewellery",
         icon: <GiJewelCrown />, // jewellery
       },
       {
-        title: "Beauty Products",
+        title: "Cosmetic Products",
         desc: "Natural beauty and personal care products.",
         img: service11,
         link: "/products/beauty-products",

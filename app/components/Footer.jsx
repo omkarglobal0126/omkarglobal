@@ -29,7 +29,7 @@ const PRODUCTS = [
   {
     title: "Lifestyle & Fashion",
     base: "/products",
-    items: ["Textiles & Apparel", "Imitation Jewellery", "Beauty Products"],
+    items: ["Textiles & Apparel", "Imitation Jewellery", "Cosmetic products"],
   },
 ];
 
@@ -74,17 +74,24 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4">Quick Links</h4>
           <ul className="space-y-3 text-sm">
-            {["Home", "About Us", "Products", "Projects", "Contact"].map(
-              (item) => (
-                <li key={item}>
-                  <Link
-                    href={`/${item.toLowerCase().replace(" ", "")}`}
-                    className="hover:text-orange-400 transition"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ),
+            {["Home", "About", "Products", "Certification", "Contact"].map(
+              (item) => {
+                const href =
+                  item === "Home"
+                    ? "/"
+                    : `/${item.toLowerCase().replace(/\s+/g, "")}`;
+
+                return (
+                  <li key={item}>
+                    <Link
+                      href={href}
+                      className="hover:text-orange-400 transition"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                );
+              },
             )}
           </ul>
         </div>
@@ -119,8 +126,8 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4">Office Info</h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex justify-start items-center gap-1">
-              <HiLocationMarker /> Bhanpuri, Raipur, Chhattisgarh
+            <li className="flex justify-start items-start gap-1">
+              <HiLocationMarker /> Bhanpuri, Raipur, Chhattisgarh, India
             </li>
             <li className="flex justify-start items-center gap-1">
               <IoCall /> +91 9109803735

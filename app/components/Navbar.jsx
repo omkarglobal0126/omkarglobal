@@ -211,7 +211,7 @@ const PRODUCT_COLUMNS = [
     links: [
       ["Textiles & Apparel", "/products/Textiles & Apparel"],
       ["Imitation Jewellery", "/products/Imitation Jewellery"],
-      ["Beauty Products", "/products/Beauty Products"],
+      ["Cosmetic products", "/products/Beauty Products"],
     ],
   },
 ];
