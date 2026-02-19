@@ -86,7 +86,7 @@ export default function Services() {
             {/* Default Bottom Title */}
             <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t to-black/10 from-black/80 text-white p-5 transition-all duration-500 group-hover:opacity-0">
               <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
-              <p>Leran More →</p>
+              <p>Read More →</p>
             </div>
 
             {/* Hover Overlay */}
