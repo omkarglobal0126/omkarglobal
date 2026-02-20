@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Trusted Import Export Company of India",
+  title: "Omkar Global : Trusted Import Export Company of India",
   description: "Trusted exporter of premium fruits, vegetables, grains, textiles, handicrafts, furniture & copper products. Explore our diverse range of Indian products now.",
 };
 
