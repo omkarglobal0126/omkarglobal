@@ -37,8 +37,9 @@ export default function WhyChoose() {
             variants={item}
             className="text-4xl font-bold leading-tight"
           >
-            Why Choose <br />
-            TransLogistics <span className="text-orange-500">PRO</span>
+            Why Choose Us for <br />
+            Global Trade
+             {/* <span className="text-orange-500">PRO</span> */}
           </motion.h2>
 
           <motion.p
@@ -59,8 +60,6 @@ export default function WhyChoose() {
               "On-Time & Secure Delivery",
               "Transparent Documentation",
               "Competitive Pricing",
-             
-              
             ].map((text, i) => (
               <motion.li
                 key={i}
@@ -72,8 +71,6 @@ export default function WhyChoose() {
               </motion.li>
             ))}
           </motion.ul>
-
-         
         </div>
 
         {/* RIGHT IMAGE */}
@@ -97,16 +94,15 @@ export default function WhyChoose() {
               👍
             </div>
             <h4 className="font-semibold text-lg">
-              Expanding Businesses  <br /> Beyond Borders
+              Expanding Businesses <br /> Beyond Borders
             </h4>
             <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-             To simplify international trade by providing reliable, efficient, and ethical import–export solutions.
+              To simplify international trade by providing reliable, efficient,
+              and ethical import–export solutions.
             </p>
           </motion.div>
         </motion.div>
       </motion.div>
-
-     
     </section>
   );
 }
