@@ -58,7 +58,7 @@ export default function BuildTogether({ subCategory }) {
         ]}
       />
 
-      <motion.div
+      {/* <motion.div
         variants={container}
         initial="hidden"
         whileInView="visible"
@@ -66,22 +66,9 @@ export default function BuildTogether({ subCategory }) {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* LEFT IMAGE SECTION */}
+          
           <motion.div variants={leftAnim} className="relative">
-            {/* Stats Card */}
-            {/* <motion.div
-              variants={item}
-              className="absolute top-4 left-4 lg:-top-6 lg:-left-6 bg-white shadow-lg rounded-xl px-5 py-3 z-10"
-            >
-              <p className="text-xl sm:text-2xl font-bold text-gray-900">
-                8,800
-              </p>
-              <p className="text-xs sm:text-sm text-gray-500">
-                Industry Projects Completed
-              </p>
-            </motion.div> */}
-
-            {/* Main Image */}
+         
             <div className="rounded-xl overflow-hidden">
               <Image
                 src="https://res.cloudinary.com/dgybkwwys/image/upload/v1769952181/2149214306_imswms.jpg"
@@ -94,7 +81,6 @@ export default function BuildTogether({ subCategory }) {
             </div>
           </motion.div>
 
-          {/* RIGHT CONTENT SECTION */}
           <motion.div variants={container} className="space-y-6">
             <motion.h2
               variants={item}
@@ -113,7 +99,6 @@ export default function BuildTogether({ subCategory }) {
               transactions for our clients.
             </motion.p>
 
-            {/* Bullet Points */}
             <motion.ul variants={container} className="space-y-3">
               {[
                 "International quality standards.",
@@ -133,7 +118,7 @@ export default function BuildTogether({ subCategory }) {
             </motion.ul>
           </motion.div>
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }
