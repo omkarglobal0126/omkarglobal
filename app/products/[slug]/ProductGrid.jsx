@@ -219,9 +219,20 @@ const sectorData = {
 export default function ProductGrid({ subCategory }) {
   const [products, setProducts] = useState([]);
 
-  const info = sectorData.indian_export_sectors.find(
-    (s) => s.category.toLowerCase() === subCategory?.toLowerCase()
-  );
+ const categoryMap = {
+  "Handicrafts & Decorative": "HANDICRAFT & DECORATIVE PRODUCTS",
+  "Textiles & Apparel": "TEXTILE AND APPAREL",
+  "Beauty Products": "COSMETIC PRODUCTS",
+  "Imitation Jewellery": "IMITATION JEWELLERY AND PRECIOUS STONES",
+  "Kitchenware & Cutlery": "KITCHENWARE AND CUTLERY PRODUCTS"
+};
+
+// Component ke andar aise use karein:
+const mappedCategory = categoryMap[subCategory] || subCategory;
+
+const info = sectorData.indian_export_sectors.find(
+  (s) => s.category.toLowerCase() === mappedCategory?.toLowerCase()
+);
 
   useEffect(() => {
     if (subCategory) {
