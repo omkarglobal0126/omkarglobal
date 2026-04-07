@@ -14,8 +14,8 @@ export default async function Page({ params }) {
       {/* subCategory1 ko subCategory kar diya */}
       <BuildTogether subCategory={subCategory} /> 
       <ProductGrid subCategory={subCategory} />
-      <WhyChoose/>
-      <FAQ/>
+      {/* <WhyChoose/> */}
+      {/* <FAQ/> */}
       <RequestQuote/>
     </>
   );
