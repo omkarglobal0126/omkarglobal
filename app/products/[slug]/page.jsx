@@ -15,7 +15,7 @@ export default async function Page({ params }) {
       <BuildTogether subCategory={subCategory} /> 
       <ProductGrid subCategory={subCategory} />
       {/* <WhyChoose/> */}
-      {/* <FAQ/> */}
+      {/* <FAQ/> */} 
       <RequestQuote/>
     </>
   );
